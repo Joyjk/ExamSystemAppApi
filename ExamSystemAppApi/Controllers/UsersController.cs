@@ -28,7 +28,7 @@ namespace ExamSystemAppApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(examSystemContext.Users.ToList()); ;
+            return Ok(examSystemContext.QuizOptions.ToList()); ;
             //return Ok(examSystemEFContext.Users.ToList());
         }
         [HttpPost]
