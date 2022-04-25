@@ -15,8 +15,7 @@ namespace ExamSystemAppApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ExamSystemContext examSystemContext;
-        private readonly IConfiguration configuration;
+       
         private readonly IUserServices userService;
         SQL _sqlDal = null;
         string msg = "";
