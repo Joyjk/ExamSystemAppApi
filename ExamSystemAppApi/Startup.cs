@@ -1,5 +1,6 @@
 //using ExamSystemAppApi.EFCore;
 using ExamSystemAppApi.Models;
+using ExamSystemAppApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,7 +39,9 @@ namespace ExamSystemAppApi
             var ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             // services.AddDbContext<ExamSystemEFContext>(options=>options.UseSqlServer(ConnectionString));
+            services.AddSingleton<IUserServices, UserService>();
             services.AddDbContext<ExamSystemContext>(options => options.UseSqlServer(ConnectionString));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +53,7 @@ namespace ExamSystemAppApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ExamSystemAppApi v1"));
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

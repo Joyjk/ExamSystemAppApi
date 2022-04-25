@@ -1,10 +1,16 @@
-﻿namespace ExamSystemAppApi.Repositories
+﻿using System.Collections.Generic;
+
+namespace ExamSystemAppApi.Repositories
 {
-    public interface IBaseRepository<T>
+    interface IBaseRepository<TEntity> where TEntity : class
     {
-        T GetById(object id);
-        T Insert(T entity);
-        T Update(T entity);
-        T Delete(object id);
+        List<TEntity> GetAll();
+        
+        void Insert(TEntity entity);
+        void Update(TEntity entity);
+        void DeleteUser(string id);
+        void Delete(int id);
+        TEntity GetByID(int id);
+        
     }
 }

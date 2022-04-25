@@ -1,10 +1,11 @@
 ﻿using ExamSystemAppApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace ExamSystemAppApi.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         private readonly ExamSystemContext examSystemContext;
 
@@ -12,62 +13,36 @@ namespace ExamSystemAppApi.Repositories
         {
             this.examSystemContext = examSystemContext;
         }
-        public T Delete(object id)
+        
+        public TEntity GetByID(int id)
         {
-            try
-            {
-                examSystemContext.Remove(GetById(id));
-                examSystemContext.SaveChanges();
-                return null;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            return examSystemContext.Set<TEntity>().Find(id);
         }
-        public T GetById(object id)
+        public void Delete(int id)
         {
-            try
-            {
-                return examSystemContext.Set<T>().Find(id);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException;
-            }
+            examSystemContext.Set<TEntity>().Remove(GetByID(id));
         }
 
-        public T Insert(T entity)
+        public void DeleteUser(string id)
         {
-            try
-            {
-                examSystemContext.Set<T>().Add(entity);
-                examSystemContext.SaveChanges();
-                return entity;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            throw new NotImplementedException();
         }
 
-        public T Update(T entity)
+        public List<TEntity> GetAll()
         {
-            
-            try
-            {
-                examSystemContext.Entry(entity).State = EntityState.Modified;
-                examSystemContext.SaveChanges();
-                return entity;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            throw new NotImplementedException();
         }
+
+        public void Insert(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
