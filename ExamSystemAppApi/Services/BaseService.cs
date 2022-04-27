@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ExamSystemAppApi.Services
 {
-    public class BaseService<T> : IBaseService<T> where T : class
+    public class BaseService<T> : IBaseService<T> where T : class ,new()
     {
         SQL _sqlDal = null;
         string msg = "";
@@ -19,10 +19,10 @@ namespace ExamSystemAppApi.Services
 
         public List<T> GetAllEntity()
         {
-            //string q = string.Format(@"select * from users");
-            //var users = _sqlDal.Select<T>(q, ref msg);
-            //return users;
-            throw new System.NotImplementedException();
+            string q = string.Format(@"select * from "+typeof(T).Name+" ");
+            var users = _sqlDal.Select<T>(q, ref msg);
+            return users;
+           
         }
 
         public void InsertEntity(T tentity)

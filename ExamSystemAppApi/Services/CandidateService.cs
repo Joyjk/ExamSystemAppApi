@@ -23,9 +23,7 @@ namespace ExamSystemAppApi.Services
             _sqlDal.Delete<Candidate>(candidate, "CandidateId", "Candidates", ref msg);
         }
 
-       
-
-        public List<Candidate> GetAllQuizOptions()
+        public List<Candidate> GetAllQuizCandidate()
         {
             string q = string.Format(@"select * from Candidates");
             var candidates = _sqlDal.Select<Candidate>(q, ref msg);

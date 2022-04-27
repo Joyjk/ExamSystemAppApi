@@ -5,7 +5,7 @@ namespace ExamSystemAppApi.Services
 {
     public interface ICandidateService
     {
-        List<Candidate> GetAllQuizOptions();
+        List<Candidate> GetAllQuizCandidate();
         void InsertNewCandidate(Candidate candidate);
         void UpdateCandidate(Candidate candidate);
         void DeleteCandidate(int id);

@@ -1,5 +1,4 @@
-﻿//using ExamSystemAppApi.EFCore;
-//using ExamSystemAppApi.Enities;
+﻿
 using ExamSystemAppApi.Models;
 using ExamSystemAppApi.Services;
 using FIK.DAL.Core;
@@ -34,10 +33,7 @@ namespace ExamSystemAppApi.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
-            
-
             userService.InsertNewUser(user);
-
 
             return Created("created", user);
         }

@@ -18,7 +18,7 @@ namespace ExamSystemAppApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(candidateService.GetAllCandidate());
+            return Ok(candidateService.GetAllQuizCandidate());
         }
         [HttpPost]
         public IActionResult Post(Candidate candidate)
