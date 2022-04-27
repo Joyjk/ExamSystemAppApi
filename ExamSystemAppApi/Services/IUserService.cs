@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExamSystemAppApi.Services
 {
-    public interface IUserServices
+    public interface IUserService
     {
         List<User> GetAllUsers();
         void InsertNewUser(User user);

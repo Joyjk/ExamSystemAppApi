@@ -22,8 +22,8 @@ namespace ExamSystemAppApi.Models
         public string CompanyName { get; set; }
         public string ExperieceDetails { get; set; }
         public int? ExperienceYear { get; set; }
-        public int? NidNo { get; set; }
-        public int? BirthCertificateNo { get; set; }
+        public string NidNo { get; set; }
+        public string BirthCertificateNo { get; set; }
         public decimal? Mark { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

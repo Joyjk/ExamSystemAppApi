@@ -39,7 +39,9 @@ namespace ExamSystemAppApi
             var ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             // services.AddDbContext<ExamSystemEFContext>(options=>options.UseSqlServer(ConnectionString));
-            services.AddSingleton<IUserServices, UserService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<ICandidateService, CandidateService>();
+            services.AddScoped (typeof(IBaseService<>), typeof(BaseService<>));
             services.AddDbContext<ExamSystemContext>(options => options.UseSqlServer(ConnectionString));
             
         }

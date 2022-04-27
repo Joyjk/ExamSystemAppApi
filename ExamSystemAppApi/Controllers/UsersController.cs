@@ -16,11 +16,9 @@ namespace ExamSystemAppApi.Controllers
     public class UsersController : ControllerBase
     {
        
-        private readonly IUserServices userService;
-        SQL _sqlDal = null;
-        string msg = "";
-       
-        public UsersController(IUserServices userService)
+        private readonly IUserService userService;
+        
+        public UsersController(IUserService userService)
         {
             
             this.userService = userService;
@@ -57,5 +55,7 @@ namespace ExamSystemAppApi.Controllers
             userService.DeleteUser(id);
             return NoContent();
         }
+
+
     }
 }

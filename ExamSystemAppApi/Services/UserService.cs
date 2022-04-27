@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ExamSystemAppApi.Services
 {
-    public class UserService: IUserServices
+    public class UserService: IUserService
     {
         private readonly IConfiguration configuration;
         SQL _sqlDal = null;
