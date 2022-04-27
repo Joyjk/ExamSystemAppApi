@@ -21,5 +21,11 @@ namespace ExamSystemAppApi.Controllers
         {
             return Ok(baseService.GetAllEntity().ToList());
         }
+        [HttpPost]
+        public IActionResult Post(User user)
+        {
+            baseService.InsertEntity(user);
+            return Created("created",user);
+        }
     }
 }

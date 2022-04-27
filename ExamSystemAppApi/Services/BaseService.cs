@@ -19,15 +19,18 @@ namespace ExamSystemAppApi.Services
 
         public List<T> GetAllEntity()
         {
-            string q = string.Format(@"select * from "+typeof(T).Name+" ");
-            var users = _sqlDal.Select<T>(q, ref msg);
-            return users;
-           
+            string q = string.Format(@"select * from "+typeof(T).Name+"s ");
+            var data = _sqlDal.Select<T>(q, ref msg);
+            return data; 
         }
 
         public void InsertEntity(T tentity)
         {
-            throw new System.NotImplementedException();
+            var data = new List<T>();
+            data.Add(tentity);
+
+            //_sqlDal.Insert<T>(data, "", "\""+typeof(T).Name+"Id\"", "AnsSheets", ref msg);
+            _sqlDal.Insert<T>(data, "", "", "AnsSheets", ref msg);
         }
 
         public void UpdateEntity(T tentity)
