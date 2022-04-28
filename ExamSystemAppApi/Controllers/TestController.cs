@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace ExamSystemAppApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class TestController : ControllerBase
     {
         private readonly IBaseService<User> baseService;
@@ -34,7 +34,7 @@ namespace ExamSystemAppApi.Controllers
             baseService.UpdateEntity(user);
             return Ok();
         }
-        [HttpDelete("{id}")]
+        //[HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             baseService.DeleteEntity(id);

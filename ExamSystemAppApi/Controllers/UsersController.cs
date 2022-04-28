@@ -13,8 +13,6 @@ namespace ExamSystemAppApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-       
-       
         private readonly IBaseService<User> userService;
 
         public UsersController(IBaseService<User> userService)
