@@ -16,7 +16,7 @@ namespace ExamSystemAppApi.Services
         }
         public void DeleteEntity(int id)
         {
-            //var query = "select * from Users where id=" + id;
+            ///var query = "select * from Users where id=" + id;
             var item = GetById(id);
             _sqlDal.Delete<T>(item, entityId, entitys, ref msg);
         }
@@ -40,8 +40,8 @@ namespace ExamSystemAppApi.Services
             var data = new List<T>();
             data.Add(tentity);
 
-            //string entityId = string.Concat(typeof(T).Name + "Id");
-            //string entitys = string.Concat(typeof(T).Name, "s");
+            ///string entityId = string.Concat(typeof(T).Name + "Id");
+            ///string entitys = string.Concat(typeof(T).Name, "s");
 
             _sqlDal.Insert<T>(data, "", entityId, entitys, ref msg);
         }
