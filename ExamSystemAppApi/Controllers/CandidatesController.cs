@@ -9,34 +9,34 @@ namespace ExamSystemAppApi.Controllers
     [ApiController]
     public class CandidatesController : ControllerBase
     {
-        private readonly ICandidateService candidateService;
+        private readonly IBaseService<Candidate> candidateService;
 
-        public CandidatesController(ICandidateService candidateService)
+        public CandidatesController(IBaseService<Candidate> candidateService)
         {
             this.candidateService = candidateService;
         }
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(candidateService.GetAllQuizCandidate());
+            return Ok(candidateService.GetAllEntity());
         }
         [HttpPost]
         public IActionResult Post(Candidate candidate)
         {
-            candidateService.InsertNewCandidate(candidate);
+            candidateService.InsertEntity(candidate);
             return Created("Created", candidate);
         }
         [HttpPut]
         public IActionResult Put(Candidate candidate)
         {
-            candidateService.UpdateCandidate(candidate);
+            candidateService.UpdateEntity(candidate);
             return Ok();
 
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            candidateService.DeleteCandidate(id);
+            candidateService.DeleteEntity(id);
             return NoContent();
         }
     }

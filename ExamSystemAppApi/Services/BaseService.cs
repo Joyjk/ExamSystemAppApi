@@ -8,13 +8,17 @@ namespace ExamSystemAppApi.Services
     {
         SQL _sqlDal = null;
         string msg = "";
+        string entityId = string.Concat(typeof(T).Name + "Id");
+        string entitys = string.Concat(typeof(T).Name, "s");
         public BaseService(IConfiguration configuration)
         {
             _sqlDal = new SQL(configuration.GetConnectionString("DefaultConnection"));
         }
         public void DeleteEntity(int id)
         {
-            throw new System.NotImplementedException();
+            //var query = "select * from Users where id=" + id;
+            var item = GetById(id);
+            _sqlDal.Delete<T>(item, entityId, entitys, ref msg);
         }
 
         public List<T> GetAllEntity()
@@ -24,18 +28,27 @@ namespace ExamSystemAppApi.Services
             return data; 
         }
 
+        public T GetById(int id)
+        {
+            string query = string.Concat("select * from ", entitys, " where ", entityId, " = ", id);
+            var enity = _sqlDal.SelectFirstOrDefault<T>(query, ref msg);
+            return enity;
+        }
+
         public void InsertEntity(T tentity)
         {
             var data = new List<T>();
             data.Add(tentity);
 
-            //_sqlDal.Insert<T>(data, "", "\""+typeof(T).Name+"Id\"", "AnsSheets", ref msg);
-            _sqlDal.Insert<T>(data, "", "", "AnsSheets", ref msg);
+            //string entityId = string.Concat(typeof(T).Name + "Id");
+            //string entitys = string.Concat(typeof(T).Name, "s");
+
+            _sqlDal.Insert<T>(data, "", entityId, entitys, ref msg);
         }
 
         public void UpdateEntity(T tentity)
         {
-            throw new System.NotImplementedException();
+            _sqlDal.Update<T>(tentity, "", entityId, entitys, ref msg);
         }
     }
 

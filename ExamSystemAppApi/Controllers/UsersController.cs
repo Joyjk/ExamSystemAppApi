@@ -1,5 +1,4 @@
-﻿
-using ExamSystemAppApi.Models;
+﻿using ExamSystemAppApi.Models;
 using ExamSystemAppApi.Services;
 using FIK.DAL.Core;
 using Microsoft.AspNetCore.Http;
@@ -15,25 +14,24 @@ namespace ExamSystemAppApi.Controllers
     public class UsersController : ControllerBase
     {
        
-        private readonly IUserService userService;
-        
-        public UsersController(IUserService userService)
+       
+        private readonly IBaseService<User> userService;
+
+        public UsersController(IBaseService<User> userService)
         {
-            
             this.userService = userService;
-           
         }
 
         [HttpGet]
         public IActionResult Get()
         {
 
-            return Ok(userService.GetAllUsers());
+            return Ok(userService.GetAllEntity());
         }
         [HttpPost]
         public IActionResult Post(User user)
         {
-            userService.InsertNewUser(user);
+            userService.InsertEntity(user);
 
             return Created("created", user);
         }
@@ -41,14 +39,14 @@ namespace ExamSystemAppApi.Controllers
         public IActionResult Put(User user)
         {
           
-            userService.UpdateUser(user);
+            userService.UpdateEntity(user);
             return Ok();
         }
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
            
-            userService.DeleteUser(id);
+            userService.DeleteEntity(id);
             return NoContent();
         }
 

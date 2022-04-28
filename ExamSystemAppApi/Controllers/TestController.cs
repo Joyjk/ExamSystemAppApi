@@ -19,6 +19,7 @@ namespace ExamSystemAppApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+
             return Ok(baseService.GetAllEntity().ToList());
         }
         [HttpPost]
@@ -26,6 +27,18 @@ namespace ExamSystemAppApi.Controllers
         {
             baseService.InsertEntity(user);
             return Created("created",user);
+        }
+        [HttpPut]
+        public IActionResult Put(User user)
+        {
+            baseService.UpdateEntity(user);
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            baseService.DeleteEntity(id);
+            return NoContent();
         }
     }
 }
