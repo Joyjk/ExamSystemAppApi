@@ -1,6 +1,9 @@
 //using ExamSystemAppApi.EFCore;
 using ExamSystemAppApi.Models;
+using ExamSystemAppApi.Repository;
+using ExamSystemAppApi.Repository.Interface;
 using ExamSystemAppApi.Services;
+using ExamSystemAppApi.Services.Others;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,11 +42,16 @@ namespace ExamSystemAppApi
             var ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             // services.AddDbContext<ExamSystemEFContext>(options=>options.UseSqlServer(ConnectionString));
-            //services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IUserService, UserService>();
             //services.AddSingleton<ICandidateService, CandidateService>();
-            services.AddScoped (typeof(IBaseService<>), typeof(BaseService<>));
+            //services.AddSingleton<IQuestionService, QuizQuestion>();
+            services.AddTransient (typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddSingleton<IQuestionService, QuestionServiceDemo>();
             services.AddDbContext<ExamSystemContext>(options => options.UseSqlServer(ConnectionString));
-            
+
+            services.AddScoped<IRepostitoryWrapper, RepositoryWrapper>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

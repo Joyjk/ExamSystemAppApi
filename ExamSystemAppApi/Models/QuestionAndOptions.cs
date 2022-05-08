@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
-
-namespace ExamSystemAppApi.Models
+﻿namespace ExamSystemAppApi.Models
 {
-    public partial class QuizOption
+    public class QuestionAndOptions
     {
-        public int OptionId { get; set; }
+        public int QuestionId { get; set; }
+        public string QuestionType { get; set; }
+        public string Question { get; set; }
+        public decimal? Mark { get; set; }
+        public int? OptionId { get; set; }
         public string OptionUid { get; set; }
         public string WrittenAns { get; set; }
         public string CorrectAns { get; set; }

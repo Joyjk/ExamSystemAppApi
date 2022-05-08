@@ -13,6 +13,7 @@ namespace ExamSystemAppApi.Services
         public QuizOptionService(IConfiguration configuration)
         {
             this.configuration = configuration;
+            _sqlDal = new SQL(configuration.GetConnectionString("DefaultConnection"));
         }
         public void DeleteOption(int id)
         {
