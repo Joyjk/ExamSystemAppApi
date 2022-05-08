@@ -11,8 +11,21 @@ namespace ExamSystemAppApi.Controllers
     [ApiController]
     public class QuestionsController : ControllerBase
     {
-        
-        #region Old
+        #region technique2
+        //private readonly IRepostitoryWrapper repostitoryWrapper;
+        //public QuestionsController(IRepostitoryWrapper repostitoryWrapper)
+        //{
+        //    this.repostitoryWrapper = repostitoryWrapper;
+        //}
+
+        //[HttpGet]
+        //public IActionResult Get()
+        //{
+        //    return Ok(repostitoryWrapper.QuestionRepository.GetAllEntity());
+        //}
+        #endregion
+
+       
         //private readonly QuestionService questionService;
 
         //private readonly QuestionService questionService;
@@ -60,7 +73,7 @@ namespace ExamSystemAppApi.Controllers
             questionService.DeleteQuestion(id);
             return NoContent();
         }
-        #endregion
+       
         [HttpGet("getallquestions")]
         public IActionResult GetAllQuestions()
         {
@@ -68,25 +81,19 @@ namespace ExamSystemAppApi.Controllers
         }
 
         [HttpPost("SetQuestionSets")]
-        public IActionResult SetQuestionSet()
+        public IActionResult SetQuestionSet(QuestionSetOption questionSetOption)
         {
-            questionService.InsertQuestionSet();
+            questionService.InsertQuestionSet(questionSetOption);
             return Ok();
         }
+        [HttpPost("AddExamType")]
+        public IActionResult AddExamType(QuestionSet questionSet)
+        {
+            questionService.AddExamType(questionSet);
+            return Created("", questionSet);
+        }
 
-        #region technique2
-        //private readonly IRepostitoryWrapper repostitoryWrapper;
-        //public QuestionsController(IRepostitoryWrapper repostitoryWrapper)
-        //{
-        //    this.repostitoryWrapper = repostitoryWrapper;
-        //}
-
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    return Ok(repostitoryWrapper.QuestionRepository.GetAllEntity());
-        //}
-        #endregion
+ 
 
 
     }

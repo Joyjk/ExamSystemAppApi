@@ -10,6 +10,8 @@ namespace ExamSystemAppApi.Services.Others
         void InsertNew(QuizQuestion quizQuestion);
         void UpdateQuestion(QuizQuestion quizQuestion);
         void DeleteQuestion(int id);
-        void InsertQuestionSet();
+        
+        void InsertQuestionSet(QuestionSetOption questionSetOption);
+        void AddExamType(QuestionSet questionSet);
     }
 }

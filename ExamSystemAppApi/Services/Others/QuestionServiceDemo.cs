@@ -116,9 +116,15 @@ namespace ExamSystemAppApi.Services.Others
 
         }
 
-        public void InsertQuestionSet()
+        public void InsertQuestionSet(QuestionSetOption questionSetOption)
         {
-
+            _sqlDal.Insert<QuestionSetOption>(questionSetOption, "", "QuestionSetOptionId", "QuestionSetOptions",ref msg);
         }
+
+        public void AddExamType(QuestionSet questionSet)
+        {
+            _sqlDal.Insert<QuestionSet>(questionSet, "", "QuestionSetId", "QuestionSets", ref msg);
+        }
+
     }
 }
