@@ -51,6 +51,8 @@ namespace ExamSystemAppApi
             services.AddTransient<IAnsSheetService, AnsSheetService>();
             services.AddScoped<IRepostitoryWrapper, RepositoryWrapper>();
 
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
+
 
         }
 
@@ -67,6 +69,10 @@ namespace ExamSystemAppApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyMethod()
+                             .AllowAnyHeader()
+                             .SetIsOriginAllowed(origin => true)
+                             .AllowCredentials());
 
             app.UseAuthorization();
 

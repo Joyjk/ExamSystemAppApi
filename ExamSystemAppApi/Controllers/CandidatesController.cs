@@ -20,6 +20,12 @@ namespace ExamSystemAppApi.Controllers
         {
             return Ok(candidateService.GetAllEntity());
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            return Ok(candidateService.GetById(id));
+        }
+
         [HttpPost]
         public IActionResult Post(Candidate candidate)
         {

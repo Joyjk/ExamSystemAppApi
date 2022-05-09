@@ -16,10 +16,16 @@ namespace ExamSystemAppApi.Controllers
             this.ansSheetService = ansSheetService;
         }
 
+        
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(ansSheetService.GetAllQuizAnswers());
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetByID(int id)
+        {
+            return Ok(ansSheetService.GetById(id));
         }
         [HttpPost]
         public IActionResult Post(AnsSheet ansSheet)
@@ -39,5 +45,6 @@ namespace ExamSystemAppApi.Controllers
             ansSheetService.DeleteAnsSheet(id);
             return NoContent();
         }
+       
     }
 }

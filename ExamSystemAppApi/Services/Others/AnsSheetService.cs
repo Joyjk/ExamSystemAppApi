@@ -19,7 +19,12 @@ namespace ExamSystemAppApi.Services
             this.examSystemContext = examSystemContext;
             _sqlDal = new SQL(configuration.GetConnectionString("DefaultConnection"));
         }
-
+        public AnsSheet GetById(int id)
+        {
+            var query = "select * from AnsSheets where AnsSheetId=" + id;
+            var ansSheet = _sqlDal.SelectFirstOrDefault<AnsSheet>(query, ref msg);
+            return ansSheet;
+        }
         public void DeleteAnsSheet(int id)
         {
             var query = "select * from AnsSheets where AnsSheetId=" + id;
@@ -49,10 +54,16 @@ namespace ExamSystemAppApi.Services
         public void UpdateAnsSheetEF(AnsSheet ansSheet)
         {
             //examSystemContext.Entry(ansSheet).State = EntityState.Modified;
-            //var entity = examSystemContext.AnsSheets.Find(ansSheet.AnsSheetId);
-            examSystemContext.AnsSheets.Update(ansSheet);
+            var entity = examSystemContext.AnsSheets.Find(ansSheet.AnsSheetId);
+            //examSystemContext.AnsSheets.Update(ansSheet);
 
-            examSystemContext.SaveChanges();
+            if (entity != null)
+            {
+                examSystemContext.Entry<AnsSheet>(entity).CurrentValues.SetValues(ansSheet);
+                examSystemContext.SaveChanges();
+            }
+
+            
         }
     }
 }

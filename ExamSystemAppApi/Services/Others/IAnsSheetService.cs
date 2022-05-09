@@ -10,5 +10,6 @@ namespace ExamSystemAppApi.Services
         void UpdateAnsSheet(AnsSheet ansSheet);
         void DeleteAnsSheet(int id);
         void UpdateAnsSheetEF(AnsSheet ansSheet);
+        AnsSheet GetById(int id);
     }
 }
