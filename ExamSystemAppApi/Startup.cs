@@ -48,7 +48,7 @@ namespace ExamSystemAppApi
             services.AddTransient (typeof(IBaseService<>), typeof(BaseService<>));
             services.AddSingleton<IQuestionService, QuestionServiceDemo>();
             services.AddDbContext<ExamSystemContext>(options => options.UseSqlServer(ConnectionString));
-
+            services.AddTransient<IAnsSheetService, AnsSheetService>();
             services.AddScoped<IRepostitoryWrapper, RepositoryWrapper>();
 
 

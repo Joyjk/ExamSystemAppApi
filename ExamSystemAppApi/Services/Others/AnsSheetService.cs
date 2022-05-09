@@ -1,5 +1,6 @@
 ﻿using ExamSystemAppApi.Models;
 using FIK.DAL.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
@@ -8,12 +9,15 @@ namespace ExamSystemAppApi.Services
     public class AnsSheetService : IAnsSheetService
     {
         private readonly IConfiguration configuration;
+        private readonly ExamSystemContext examSystemContext;
         SQL _sqlDal = null;
         string msg = "";
 
-        public AnsSheetService(IConfiguration configuration) 
+        public AnsSheetService(IConfiguration configuration, ExamSystemContext examSystemContext) 
         {
             this.configuration = configuration;
+            this.examSystemContext = examSystemContext;
+            _sqlDal = new SQL(configuration.GetConnectionString("DefaultConnection"));
         }
 
         public void DeleteAnsSheet(int id)
@@ -35,12 +39,20 @@ namespace ExamSystemAppApi.Services
             var ansSheets = new List<AnsSheet>();
             ansSheets.Add(ansSheet);
 
-            _sqlDal.Insert<QuizOption>(ansSheets, "", "AnsSheetId", "AnsSheets", ref msg);
+            _sqlDal.Insert<AnsSheet>(ansSheets, "", "AnsSheetId", "AnsSheets", ref msg);
         }
 
         public void UpdateAnsSheet(AnsSheet ansSheet)
         {
             _sqlDal.Update<AnsSheet>(ansSheet, "", "AnsSheetId", "AnsSheets", ref msg);
+        }
+        public void UpdateAnsSheetEF(AnsSheet ansSheet)
+        {
+            //examSystemContext.Entry(ansSheet).State = EntityState.Modified;
+            //var entity = examSystemContext.AnsSheets.Find(ansSheet.AnsSheetId);
+            examSystemContext.AnsSheets.Update(ansSheet);
+
+            examSystemContext.SaveChanges();
         }
     }
 }
