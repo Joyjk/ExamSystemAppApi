@@ -13,5 +13,13 @@ namespace ExamSystemAppApi.Services.Others
         
         void InsertQuestionSet(QuestionSetOption questionSetOption);
         void AddExamType(QuestionSet questionSet);
+        void InsertSetName(SetName setName);
+        List<SetName> GetAllSetName();
+        void InsertCandidateType(CandidateType candidateType);
+        List<CandidateType> GetAllCandidateType();
+        void InsertSession(Session session);
+        List<Session> GetAllSession();
+        void InsertQuestionAndSet(QuestionAndSet questionAndSet);
+        List<QuestionAndSet> GetAllQuestionAndSet();
     }
 }

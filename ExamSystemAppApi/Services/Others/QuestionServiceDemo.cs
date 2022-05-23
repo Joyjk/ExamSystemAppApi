@@ -126,5 +126,55 @@ namespace ExamSystemAppApi.Services.Others
             _sqlDal.Insert<QuestionSet>(questionSet, "", "QuestionSetId", "QuestionSets", ref msg);
         }
 
+
+        ////23/05/2022
+
+
+        public void InsertSetName(SetName setName)
+        {
+            _sqlDal.Insert<SetName>(setName, "", "SetNameId", "SetNames", ref msg);
+        }
+        public List<SetName> GetAllSetName()
+        {
+            string sql = string.Format(@"Select * from SetNames");
+            var data = _sqlDal.Select<SetName>(sql,ref msg);
+            return data;
+        }
+        public void InsertCandidateType(CandidateType candidateType)
+        {
+            _sqlDal.Insert<CandidateType>(candidateType, "", "TypeId", "CandidateTypes", ref msg);
+
+        }
+        public List<CandidateType> GetAllCandidateType()
+        {
+            string sql = string.Format(@"Select * from CandidateTypes");
+            var data = _sqlDal.Select<CandidateType>(sql,ref msg);
+            return data;
+        }
+        public void InsertSession(Session session)
+        {
+            _sqlDal.Insert<Session>(session, "", "SessionId", "Sessions", ref msg);
+        }
+        public List<Session> GetAllSession()
+        {
+            string sql = string.Format(@"Select * from Sessions");
+            var data = _sqlDal.Select<Session>(sql,ref msg);
+            return data;
+        }
+        public void InsertQuestionAndSet(QuestionAndSet questionAndSet)
+        {
+            _sqlDal.Insert<QuestionAndSet>(questionAndSet, "", "QuestionAndSetId", "QuestionAndSets", ref msg);
+        }
+        public List<QuestionAndSet> GetAllQuestionAndSet()
+        {
+            string sql = string.Format(@"Select * from QuestionAndSets");
+            var data = _sqlDal.Select<QuestionAndSet>(sql,ref msg);
+            return data;
+        }
+
+
+
+
+
     }
 }

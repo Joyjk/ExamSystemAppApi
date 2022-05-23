@@ -28,5 +28,8 @@ namespace ExamSystemAppApi.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string Password { get; set; }
+        public int? QuestionSetOptionId { get; set; }
+        public int? CandidateType { get; set; }
+        public int? QuestionAndSetId { get; set; }
     }
 }

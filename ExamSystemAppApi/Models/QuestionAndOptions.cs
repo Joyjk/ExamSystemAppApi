@@ -15,5 +15,6 @@
         public string Option3 { get; set; }
         public string Option4 { get; set; }
         public string Option5 { get; set; }
+        public string QuestionPicture { get; set; }
     }
 }

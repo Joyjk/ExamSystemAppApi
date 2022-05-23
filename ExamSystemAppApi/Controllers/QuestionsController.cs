@@ -93,7 +93,50 @@ namespace ExamSystemAppApi.Controllers
             return Created("", questionSet);
         }
 
- 
+        [HttpPost("AddSetName")]
+        public IActionResult AddSetName(SetName setName)
+        {
+            questionService.InsertSetName(setName);
+            return Created("",setName);
+        }
+        [HttpGet("GetAllSetName")]
+        public IActionResult GetAllSetName()
+        {
+            return Ok(questionService.GetAllSetName());
+        }
+        [HttpPost("AddCandidateType")]
+        public IActionResult AddCandidateType(CandidateType candidateType)
+        {
+            questionService.InsertCandidateType(candidateType);
+            return Created("", candidateType);
+        }
+        [HttpGet("GetAllCandidateType")]
+        public IActionResult GetAllCandidateType()
+        {
+            return Ok(questionService.GetAllCandidateType());
+        }
+        [HttpPost("AddCandidateSession")]
+        public IActionResult AddSession(Session session)
+        {
+            questionService.InsertSession(session);
+            return Created("", session);
+        }
+        [HttpGet("GetCandidateSession")]
+        public IActionResult GetAllSession()
+        {
+            return Ok(questionService.GetAllSession());
+        }
+        [HttpPost("SetAndQuestionsMapping")]
+        public IActionResult AddQuestionAndSet(QuestionAndSet questionAndSet)
+        {
+            questionService.InsertQuestionAndSet(questionAndSet);
+            return Created("",questionAndSet);
+        }
+
+        
+
+
+
 
 
     }

@@ -13,6 +13,7 @@ namespace ExamSystemAppApi.Models
         public decimal? Mark { get; set; }
         public int? OptionId { get; set; }
         public string OptionUid { get; set; }
+        public String QuestionPicture { get; set; }
         public QuizOption Options { get; set; }
     }
 }
