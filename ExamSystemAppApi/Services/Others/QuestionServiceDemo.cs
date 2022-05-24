@@ -1,4 +1,5 @@
 ﻿using ExamSystemAppApi.Models;
+using ExamSystemAppApi.Models.DTOs;
 using FIK.DAL.Core;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -169,6 +170,20 @@ namespace ExamSystemAppApi.Services.Others
         {
             string sql = string.Format(@"Select * from QuestionAndSets");
             var data = _sqlDal.Select<QuestionAndSet>(sql,ref msg);
+            return data;
+        }
+
+        public List<AssignQusBeforeExam> GetAllAssignQusBeforeExam()
+        {
+            string sql = string.Format(@"select QuestionAndSets.QuestionAndSetId, QuestionAndSets.SetNameId,  SetNames.SetString, QuestionAndSets.QuestionId, QuizQuestions.Question,
+                QuestionAndSets.CandidateTypeId, CandidateTypes.Designation, QuestionAndSets.SessionId, Sessions.SessionString, 
+                QuestionAndSets.TimeDuration
+
+                from QuestionAndSets, SetNames, QuizQuestions, CandidateTypes, Sessions
+                where QuestionAndSets.SetNameId=SetNames.SetNameId and QuestionAndSets.QuestionId=QuizQuestions.QuestionId
+                and CandidateTypes.TypeId = QuestionAndSets.CandidateTypeId 
+                and Sessions.SessionId=QuestionAndSets.SessionId");
+            var data = _sqlDal.Select<AssignQusBeforeExam>(sql,ref msg);
             return data;
         }
 

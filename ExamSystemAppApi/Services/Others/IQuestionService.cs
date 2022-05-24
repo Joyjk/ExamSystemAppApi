@@ -1,4 +1,5 @@
 ﻿using ExamSystemAppApi.Models;
+using ExamSystemAppApi.Models.DTOs;
 using System.Collections.Generic;
 
 namespace ExamSystemAppApi.Services.Others
@@ -21,5 +22,6 @@ namespace ExamSystemAppApi.Services.Others
         List<Session> GetAllSession();
         void InsertQuestionAndSet(QuestionAndSet questionAndSet);
         List<QuestionAndSet> GetAllQuestionAndSet();
+        List<AssignQusBeforeExam> GetAllAssignQusBeforeExam();
     }
 }

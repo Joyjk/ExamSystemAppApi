@@ -133,6 +133,12 @@ namespace ExamSystemAppApi.Controllers
             return Created("",questionAndSet);
         }
 
+        [HttpGet("GetAllAssignQusBeforeExam")]
+        public IActionResult GetAllAssignQusBeforeExam()
+        {
+            return Ok(questionService.GetAllAssignQusBeforeExam());
+        }
+
         
 
 
